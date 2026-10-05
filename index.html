@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        :root {
+            --mouse-x: 50px;
+            --mouse-y: 50px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            overflow: hidden;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Lexend', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main {
+            z-index: 1;
+        }
+        h1 {
+            font-size: max(10vw, 60vh);
+            color: #fff;
+        }
+        #bg, #bg_mask {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: calc(7.0vmax * -1);
+            background: url(https://i.pinimg.com/736x/d5/07/6e/d5076e2a3ad1e659c88f07e3c28b4360.jpg)
+            no-repeat center center/cover;
+        }
+        #bg {
+            filter: blur(10px);
+        }
+        #bg_mask {
+            mask-image: radial-gradient(circle 50vmin at var(--x) var(--y), black 20vmin, transparent);
+        }
+    </style>
+</head>
+<body>
+    <div id="bg"></div>
+    <div id="bg_mask"></div>
+    <main>
+        <h1>Focus</h1>
+    </main>
+    <script>
+        "use strict";
+        console.clear();
+        var root = document.querySelector(":root");
+        function spotlight(e) {
+            root.style.setProperty("--x", e.pageX + "px");
+            root.style.setProperty("--y", e.pageY + "px");
+        }
+        window.addEventListener("pointermove", spotlight);
+        window.addEventListener("pointerdown", spotlight);
+    </script>
